@@ -1,4 +1,5 @@
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/google-chart/google-chart.html">
 
 <dom-module id="currency-order-chart">
     <template>CurrencyOrderChart
@@ -8,7 +9,12 @@
             }
         </style>
 
-        
+        <google-chart
+  type='line'
+  options='{"title": "Distribution of days in 2001Q1"}'
+  cols='[{"label":"Month", "type":"string"}, {"label":"Days", "type":"number"}]'
+  rows='[["Jan", 31],["Feb", 28],["Mar", 31]]'>
+</google-chart>
 
     </template>
 
@@ -55,7 +61,8 @@
              /* this will do the render and data modifications needed for the graph,
              */
             _renderGraph(){
-                console.log(this.orderData,"blaa");
+                var orders= this.orderData.orders;
+                console.log(orders,"blaa");
             }
 
             /**
