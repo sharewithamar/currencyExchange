@@ -9,6 +9,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+
+<link rel="import" href="currency-order-chart.html">
 <link rel="import" href="shared-styles.html">
 
 <dom-module id="currency-order-list">
@@ -20,6 +23,13 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         padding: 10px;
       }
     </style>
+    <iron-ajax
+    auto
+    url="src/orders.json"
+   
+    handle-as="json"
+    on-response="_handleResponse"
+    ></iron-ajax>
 
     <div class="card">
       <div class="circle">2</div>
@@ -27,11 +37,30 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <p>Ea duis bonorum nec, falli paulo aliquid ei eum.</p>
       <p>Id nam odio natum malorum, tibique copiosae expetenda mel ea.Detracto suavitate repudiandae no eum. Id adhuc minim soluta nam.Id nam odio natum malorum, tibique copiosae expetenda mel ea.</p>
     </div>
+     <div class="card">
+      
+      <h1>Visualisation</h1>
+     <div>
+       <currency-order-chart order-data="[[testdata]]"></currency-order-chart>
+     </div>
+    </div>
   </template>
 
   <script>
     class CurrencyOrderList extends Polymer.Element {
       static get is() { return 'currency-order-list'; }
+     static get properties(){
+       return{
+         testdata:{
+           type:Object,
+           value:{s:"ss"}
+         }
+       }
+     }
+
+     _handleResponse(data){
+       console.log(data);
+     }
     }
 
     window.customElements.define(CurrencyOrderList.is, CurrencyOrderList);

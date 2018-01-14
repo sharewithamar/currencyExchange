@@ -1,0 +1,76 @@
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
+<dom-module id="currency-order-chart">
+    <template>CurrencyOrderChart
+        <style>
+            :host {
+                display: block
+            }
+        </style>
+
+        
+
+    </template>
+
+    <script>
+        /**
+         * `currency-order-chart` Description
+         *
+         * @summary ShortDescription.
+         * @customElement
+         * @polymer
+         * @extends {Polymer.Element}
+         */
+        class CurrencyOrderChart extends Polymer.Element {
+            /**
+             * String providing the tag name to register the element under.
+             */
+            static get is() {
+                return 'currency-order-chart';
+            }
+
+            /**
+             * Object describing property-related metadata used by Polymer features
+             */
+            static get properties() {
+                return {
+                    orderData:{
+                        type:Object,
+                        value:{},
+                        observer:"_renderGraph"
+                    }
+                };
+            }
+
+            /**
+             * Instance of the element is created/upgraded. Use: initializing state,
+             * set up event listeners, create shadow dom.
+             * @constructor
+             */
+            constructor() {
+                super();
+            }
+
+
+             /* this will do the render and data modifications needed for the graph,
+             */
+            _renderGraph(){
+                console.log(this.orderData,"blaa");
+            }
+
+            /**
+             * Use for one-time configuration of your component after local DOM is initialized. 
+             */
+            ready() {
+                super.ready();
+
+                Polymer.RenderStatus.afterNextRender(this, function() {
+                    
+                });
+            }
+
+        }
+
+        window.customElements.define(CurrencyOrderChart.is, CurrencyOrderChart);
+    </script>
+</dom-module>
