@@ -1,16 +1,27 @@
 package com.ing.exchange.plateform;
+import org.junit.Before;
+import org.junit.Rule;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.mockito.junit.MockitoJUnit;
+import org.mockito.junit.MockitoRule;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import java.text.ParseException;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
 public class TestprojectApplicationTests {
 
-	@Test
-	public void contextLoads() {
+	@Rule
+	public MockitoRule mockitoRule = MockitoJUnit.rule();
+
+	@Before
+	public void setup() throws ParseException {
+		MockitoAnnotations.initMocks(this);
 	}
+
+	public void happypathtest(){
+
+	}
+
 
 }
