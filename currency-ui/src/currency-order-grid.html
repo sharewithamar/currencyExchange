@@ -1,0 +1,109 @@
+<!--
+@license
+Copyright (c) 2016 The Polymer Project Authors. All rights reserved.
+This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
+The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
+The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
+Code distributed by Google as part of the polymer project is also
+subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
+-->
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link href="../bower_components/vaadin-grid/vaadin-grid.html" rel="import">
+<link href="../bower_components/vaadin-grid/vaadin-grid-selection-column.html" rel="import">
+<link href="../bower_components/vaadin-grid/vaadin-grid-sorter.html" rel="import">
+
+<dom-module id="currency-order-grid">
+  <template>
+    <vaadin-grid items="[[orderData]]" column-reordering-allowed multi-sort>
+        
+      <vaadin-grid-selection-column auto-select frozen> </vaadin-grid-selection-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="userId">User Id</vaadin-grid-sorter>
+        </template>
+        <template>[[item.userId]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="from">From</vaadin-grid-sorter>
+        </template>
+        <template>[[item.from]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="to">To</vaadin-grid-sorter>
+        </template>
+        <template>[[item.to]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="sell">Sell</vaadin-grid-sorter>
+        </template>
+        <template>[[item.sell]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="buy">Buy</vaadin-grid-sorter>
+        </template>
+        <template>[[item.buy]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="rate">rate</vaadin-grid-sorter>
+        </template>
+        <template>[[item.rate]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="fee">Fee</vaadin-grid-sorter>
+        </template>
+        <template>[[item.fee]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="country">Country</vaadin-grid-sorter>
+        </template>
+        <template>[[item.country]]</template>
+      </vaadin-grid-column>
+
+      <vaadin-grid-column resizable>
+        <template class="header">
+          <vaadin-grid-sorter path="time">time</vaadin-grid-sorter>
+        </template>
+        <template>[[item.time]]</template>
+      </vaadin-grid-column>
+
+    </vaadin-grid>
+  </template>
+
+  <script>
+    class CurrencyOrderGrid extends Polymer.Element {
+      static get is() { return 'currency-order-grid'; }
+      static get properties() {
+          return {
+              orderData:{
+                  type:Object,
+                  value:{},
+                  observer: "_orderGrid" 
+              }
+          };
+      }
+
+      _orderGrid(){
+        console.log("checking");
+        console.log(this.orderData);
+      }
+      
+    }
+
+    window.customElements.define(CurrencyOrderGrid.is, CurrencyOrderGrid);
+  </script>
+</dom-module>
