@@ -1,0 +1,164 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../../bower_components/paper-styles/color.html">
+<link rel="import" href="../../bower_components/paper-styles/typography.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+
+<dom-module id="landing-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      header {
+         @apply --layout-vertical;
+     /*  @apply --layout-center-center;*/
+        padding: 0 16px;
+        background-image: url(../../header-bg.jpg);
+        background-repeat: no-repeat;
+        background-size: cover;
+        color: white;
+        text-align: center;
+        height:100vh;
+        display: flex;
+        justify-content: center
+      }
+
+      header > h2 {
+        font-size: 56px;
+        font-weight: 300;
+        margin: 0;
+        text-shadow: 4px 4px 2px rgba(150, 150, 150, 1);
+
+      }
+      paper-card {
+    	min-width: 400px;
+      align-self: center;
+      box-shadow: 0 5rem 2rem rgba(#000, 0.1);
+      padding:10px;
+
+
+      }
+      .card-content{
+         display: grid;
+        flex-direction: column;
+        align-items: flex-start; 
+        
+      }
+
+    </style>
+ <app-header-layout>
+
+  <header>
+    <h2>Welcome to our currency exchange</h2>
+    <paper-card>
+      <iron-form id="exchangeform">
+
+      <form>
+      <div class="card-content">
+        <paper-input id="username" name="userid" required auto-validate error-message="Enter user name!"  label="User Name" value="{{currencyform.userId}}"></paper-input>
+        <paper-dropdown-menu id="from" name="from" label="From Currency" value="{{currencyform.from}}">
+          <paper-listbox   slot="dropdown-content">         
+             <template is="dom-repeat" items="{{Countries}}">
+                  <paper-item noink value="item.index">{{item}} </paper-item>
+           
+          </template> 
+  
+          </paper-listbox>
+        </paper-dropdown-menu>
+        <paper-dropdown-menu id="to" name="to" label="From Currency" value="{{currencyform.to}}">
+            <paper-listbox   slot="dropdown-content">         
+               <template is="dom-repeat" items="{{Countries}}">
+                    <paper-item noink value="item.index">{{item}} </paper-item>
+             
+            </template> 
+    
+            </paper-listbox>
+          </paper-dropdown-menu>
+        <paper-input always-float-label label="Sell Amount" pattern="^[1-9]\d*(\.\d+)?$"
+        
+         required auto-validate error-message="Enter only numbers!"value="{{currencyform.toSell}}"></paper-input>
+       
+        <paper-dropdown-menu id="origin" name="origin" label="Origin Country" value="{{currencyform.originCountry}}">
+          <paper-listbox   slot="dropdown-content">         
+             <template is="dom-repeat" items="{{Countries}}">
+                  <paper-item noink value="item.index">{{item}} </paper-item>
+           
+          </template> 
+  
+          </paper-listbox>
+        </paper-dropdown-menu>
+      </div>
+      <div class="card-actions">
+        <paper-button on-click="submit" type="submit"style="color:black">Place order</paper-button>
+      </div>
+    </form>
+  </iron-form>
+  <iron-ajax id="postExchange"
+  method="POST"
+  body='{{currencyform}}'    
+  handle-as="json"
+  content-type="application/json"
+  on-response="serverSuccessCb"
+  url="/post_exchange_consume">
+</iron-ajax>
+
+
+    </paper-card> 
+  </header>
+
+</app-header-layout>
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class LandingApp extends Polymer.Element {
+      static get is() { return 'landing-app'; }
+      static get properties() {
+        return {
+           currencyform:{
+             type:Object,
+             value:{}
+           },
+
+          Countries: {
+            type: Array,
+            value: ['EUR','GBP','USD','GER','INR']
+          }
+        };
+      }
+      submit()
+      {
+        var currentDate= new Date();
+        this.currencyform.timePlaced=currentDate;
+       // console.log("form values",JSON.stringify(this.currencyform));
+        if(this.$.exchangeform.validate()) {
+          console.log("valid");
+          console.log("form values",JSON.stringify(this.currencyform));
+            this.$.postExchange.generateRequest();
+          }
+
+      }
+      serverSuccessCb(response)
+      {
+        console.log("Sell order placed successfully",response);
+      }
+      
+    }
+
+    window.customElements.define(LandingApp.is, LandingApp);
+  </script>
+</dom-module>
