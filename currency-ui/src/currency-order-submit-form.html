@@ -1,20 +1,20 @@
-<link rel="import" href="../../bower_components/polymer/polymer-element.html">
-<link rel="import" href="../../bower_components/iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../../bower_components/app-layout/app-header/app-header.html">
-<link rel="import" href="../../bower_components/app-layout/app-header-layout/app-header-layout.html">
-<link rel="import" href="../../bower_components/paper-button/paper-button.html">
-<link rel="import" href="../../bower_components/paper-icon-button/paper-icon-button.html">
-<link rel="import" href="../../bower_components/paper-styles/color.html">
-<link rel="import" href="../../bower_components/paper-styles/typography.html">
-<link rel="import" href="../../bower_components/paper-card/paper-card.html">
-<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
-<link rel="import" href="../../bower_components/iron-form/iron-form.html">
-<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
-<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
-<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
-<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../bower_components/iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../bower_components/app-layout/app-header/app-header.html">
+<link rel="import" href="../bower_components/app-layout/app-header-layout/app-header-layout.html">
+<link rel="import" href="../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/paper-styles/color.html">
+<link rel="import" href="../bower_components/paper-styles/typography.html">
+<link rel="import" href="../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../bower_components/paper-item/paper-item.html">
 
-<dom-module id="landing-app">
+<dom-module id="currency-order-submit-form">
   <template>
     <style>
       :host {
@@ -24,7 +24,7 @@
          @apply --layout-vertical;
      /*  @apply --layout-center-center;*/
         padding: 0 16px;
-        background-image: url(../../header-bg.jpg);
+        background-image: url(../images/header-bg.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         color: white;
@@ -125,8 +125,8 @@
      * @customElement
      * @polymer
      */
-    class LandingApp extends Polymer.Element {
-      static get is() { return 'landing-app'; }
+    class CurrencyOrderSubmitForm extends Polymer.Element {
+      static get is() { return 'currency-order-submit-form'; }
       static get properties() {
         return {
            currencyform:{
@@ -159,6 +159,6 @@
       
     }
 
-    window.customElements.define(LandingApp.is, LandingApp);
+    window.customElements.define(CurrencyOrderSubmitForm.is, CurrencyOrderSubmitForm);
   </script>
 </dom-module>
