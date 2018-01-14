@@ -41,7 +41,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       
       <h1>Visualisation</h1>
      <div>
-       <currency-order-chart order-data="[[testdata]]"></currency-order-chart>
+       <currency-order-chart order-data="[[orderData]]"></currency-order-chart>
      </div>
     </div>
   </template>
@@ -51,7 +51,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       static get is() { return 'currency-order-list'; }
      static get properties(){
        return{
-         testdata:{
+         orderData:{
            type:Object,
            value:{s:"ss"}
          }
@@ -59,7 +59,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
      }
 
      _handleResponse(data){
-       console.log(data);
+        this.orderData = data.detail.response; 
      }
     }
 
